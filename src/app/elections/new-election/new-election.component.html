@@ -1,0 +1,107 @@
+<div class="container-fluid p-4">
+    <mat-toolbar>
+        <mat-toolbar-row class="d-flex justify-content-between">
+            <span class="title">
+                Create New Election</span>
+
+            <div class="d-flex flex-row">
+
+                <button mat-raised-button color="warn" (click)="close()">
+                    <mat-icon>close</mat-icon>close
+                </button>
+
+            </div>
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <div *ngIf="message!=''" class="alert alert-success">{{message}}</div>
+    <div *ngIf="errMessage!=''" class="alert alert-success">{{errMessage}}</div>
+    <div class="d-flex flex-row">
+        <form [formGroup]="electionForm" class="row">
+            <div class="form-group p-2 col-sm-12 col-lg-6 col-md-12">
+                <label for="name">Election Name</label>
+                <input class="form-control" formControlName="electionName"
+                    [ngClass]="isFieldInvalid('electionName')?'is-invalid':''" [(ngModel)]="election.electionName"
+                    id="electionName" type="text">
+            </div>
+
+            <div class="form-group p-2 col-sm-12 col-lg-6 col-md-12">
+                <mat-form-field appearance="fill">
+                    <mat-label>Election Date</mat-label>
+                    <input matInput [matDatepicker]="picker" [matDatepickerFilter]="myFilter" class="form-control"
+                        formControlName="electionDate" [ngClass]="isFieldInvalid('startDate')?'is-invalid':''"
+                        [(ngModel)]="election.electionDate">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+
+            <table formArrayName="candidatesArray">
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Gender
+                    </th>
+                    <th>
+                        Address
+                    </th>
+                    <th>
+                        Phone
+                    </th>
+                    <th>
+                        <button mat-raised-button class="me-2" color="primary" (click)="addNewCandidate()">
+                            <mat-icon>add_circle</mat-icon>
+                        </button>
+                    </th>
+                </tr>
+                <tr *ngFor="let candidate of election.candidates; let i=index" formGroupName="{{i}}">
+                    <td>
+                        <input class="form-control" formControlName="name"
+                            [ngClass]="isFieldInvalid('name')?'is-invalid':''" [(ngModel)]="candidate.name" id="name"
+                            type="text">
+                    </td>
+                    <td>
+                        <div class="form-group p-2 col-sm-12 col-lg-6 col-md-12">
+                            <label for="name" class="pb-2">Gender</label><br />
+
+                            <div class="form-check form-check-inline"
+                                [ngClass]="isFieldInvalid('gender')?'is-invalid':''">
+                                <input class="form-check-input" type="radio" name="gender" id="male"
+                                    formControlName="gender" [(ngModel)]="candidate.gender" value="MALE">
+                                <label class="form-check-label" for="male">Male</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" id="female"
+                                    formControlName="gender" [(ngModel)]="candidate.gender" value="FEMALE">
+                                <label class="form-check-label" for="female">Female</label>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <input class="form-control" formControlName="address"
+                            [ngClass]="isFieldInvalid('address')?'is-invalid':''" [(ngModel)]="candidate.address"
+                            id="address" type="text">
+                    </td>
+                    <td>
+                        <input class="form-control" formControlName="phone"
+                            [ngClass]="isFieldInvalid('phone')?'is-invalid':''" [(ngModel)]="candidate.phone" id="phone"
+                            type="text">
+                    </td>
+                    <td>
+                        <button *ngIf="i>0" mat-raised-button class="me-2" color="primary" (click)="delete(i)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div class="d-flex justify-content-center p-3">
+        <button [disabled]="electionForm.invalid" mat-raised-button color="primary" (click)="saveElection()">
+            <mat-icon>save</mat-icon>Create
+            <span *ngIf="saveLoading" class="spinner-border spinner-border-sm mr-1"></span>
+        </button>
+    </div>
+
+</div>

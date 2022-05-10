@@ -1,0 +1,25 @@
+
+.mat-card-header{
+    background-color:#F13903 !important;
+    color: white !important;
+    padding:5px !important;
+    cursor: pointer;
+  }
+  
+   .mat-card{
+    padding:0 !important;
+    border: 1px solid green;
+  }
+  
+  .mat-card-content{
+    padding:5px !important;
+  }
+
+  .mat-card .last-child {
+    margin-bottom: 0 !important;
+  }
+
+  .balance-amount{
+      font-weight: bold;
+      color: green;
+  }

@@ -1,0 +1,48 @@
+<mat-card>
+    <mat-card-header class="d-flex align-items-center" matRipple [matRippleCentered]="centered" (click)="openVotingModel()">
+        <mat-card-title class="d-flex flex-column">
+            <span class="pb-2">{{election.electionName}}</span>
+            <span>{{election.status}}</span>
+        </mat-card-title>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+        <div class="d-flex flex-fill flex-column p-2 bd-highlight">
+            <div class="d-flex flex-row fs-5 justify-content-around pb-2 border-bottom">
+                <div>
+                    Elction Date
+                </div>
+                <div class="d-flex flex-fill  justify-content-end align-items-center">
+                   <span class="balance-amount">
+                       {{getDate(election.electionDate) | date: 'short'}} 
+                   </span>
+                </div>
+            </div>
+            <div class="d-flex flex-row fs-5 justify-content-around pt-3 pb-3 border-bottom">
+                <div>
+                    Candidates
+                </div>
+                <div class="d-flex flex-fill justify-content-end align-items-center">
+                    Votes
+                </div>
+            </div>
+            <div class="d-flex flex-row fs-5 justify-content-around pt-3 pb-3 border-bottom">
+                <button *ngIf="election.status!='Not Started'" mat-raised-button class="me-2" color="secondary" (click)="openVotingModel()">
+                    <mat-icon>how_to_vote</mat-icon>Vote
+                </button>
+                <button *ngIf="election.status=='Not Started'" mat-raised-button class="me-2" color="secondary" (click)="openVotingModel()">
+                    <mat-icon>start</mat-icon>Start Election
+                </button>
+            </div>
+            <div class="d-flex flex-row justify-content-center pt-2">
+                <div>
+                    Created on:
+                </div>
+                <div>
+                    {{getDate(election.createdDate) | date:'short'}}
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+    <mat-card-footer></mat-card-footer>
+</mat-card>

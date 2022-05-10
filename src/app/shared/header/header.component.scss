@@ -1,0 +1,19 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+mat-nav-list.list-horizontal {
+  display: flex;
+  flex-direction: row;
+}
+
+.mat-list-item {
+  color: rgb(8, 8, 8) !important;
+  border-right: 1px solid;
+}
+
+.active-route {
+  background-color: green !important;
+  color: rgba(255, 255, 255) !important;
+  border-bottom: 3px solid green;
+}

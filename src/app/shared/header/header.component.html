@@ -1,0 +1,25 @@
+<mat-toolbar>
+    <mat-toolbar-row>
+        <span class="title">Voting System</span>
+        <span class="example-spacer"></span>
+        <mat-nav-list class="list-horizontal">
+            <a mat-list-item routerLink="./create-new-election" [routerLinkActiveOptions]="{exact: true}"
+                routerLinkActive="active-route">Create New Election</a>
+            <a mat-list-item routerLink="./reports" [routerLinkActiveOptions]="{exact: false}"
+                routerLinkActive="active-route">Reports</a>
+        </mat-nav-list>
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>account_circle</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="openAccoountModal()">
+                <mat-icon>manage_accounts</mat-icon>
+                <span>Account Settings</span>
+            </button>
+            <button mat-menu-item (click)="logout()">
+                <mat-icon>logout</mat-icon>
+                <span>Logout</span>
+            </button>
+        </mat-menu>
+    </mat-toolbar-row>
+</mat-toolbar>
