@@ -1,12 +1,6 @@
-<div class="row pt-2">
-    <div class="col-md-3 col-xl-3 col-sm-6 pt-2">
-        <mat-card (click)="openCreateModel()">
-            <mat-card-content>
-                <mat-icon>add</mat-icon>
-            </mat-card-content>
-        </mat-card>
-    </div>
-    <div *ngFor="let election of elections" class="col-md-3 col-xl-3 col-sm-6 pt-2">
-            <election-card [election]="election"></election-card>
+<app-header></app-header>
+<div class="rowv px-4">
+    <div *ngFor="let election of elections" class="ml-4 col-md-3 col-xl-3 col-sm-6 pt-2">
+            <election-card [election]="election" (startElection)="startElection(election)" (endElection)="endElection(election)"v></election-card>
     </div>
 </div>

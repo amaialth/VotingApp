@@ -1,5 +1,5 @@
 <mat-card>
-    <mat-card-header class="d-flex align-items-center" matRipple [matRippleCentered]="centered" (click)="openVotingModel()">
+    <mat-card-header class="d-flex align-items-center" matRipple [matRippleCentered]="centered">
         <mat-card-title class="d-flex flex-column">
             <span class="pb-2">{{election.electionName}}</span>
             <span>{{election.status}}</span>
@@ -19,19 +19,39 @@
                 </div>
             </div>
             <div class="d-flex flex-row fs-5 justify-content-around pt-3 pb-3 border-bottom">
-                <div>
-                    Candidates
-                </div>
-                <div class="d-flex flex-fill justify-content-end align-items-center">
-                    Votes
-                </div>
+                <table style="width: 100%;">
+                    <tr>
+                        <th>
+                            Name
+                        </th>
+                        <th style="text-align: center;">
+                            {{election.status=='Completed'?'No Of Votes':'Vote' }}
+                        </th>
+                    </tr>
+                    <tr *ngFor="let vote of election.voting; let i=index" style="border-top: 1px solid purple;">
+                        <td>
+                            {{vote.candidateName}}
+                        </td>
+                        <td *ngIf="election.status!='Completed'">
+                            <button mat-raised-button class="me-2" color="primary" [disabled]="isUserAlreadyVoted() || election.status!='Not Started'" (click)="openVotingModel(i)">
+                                <mat-icon>how_to_vote</mat-icon>
+                            </button>
+                        </td>
+                        <td *ngIf="election.status=='Completed'" style="text-align: center;">
+                            {{vote.voteCount}}
+                        </td>
+                    </tr>
+                </table>
             </div>
             <div class="d-flex flex-row fs-5 justify-content-around pt-3 pb-3 border-bottom">
-                <button *ngIf="election.status!='Not Started'" mat-raised-button class="me-2" color="secondary" (click)="openVotingModel()">
-                    <mat-icon>how_to_vote</mat-icon>Vote
+                <button *ngIf="election.status=='Completed'" mat-raised-button class="me-2" color="secondary" (click)="openVotingModel(0)">
+                    <mat-icon>how_to_vote</mat-icon>View Result
                 </button>
-                <button *ngIf="election.status=='Not Started'" mat-raised-button class="me-2" color="secondary" (click)="openVotingModel()">
+                <button *ngIf="election.status=='Not Started'" mat-raised-button class="me-2" color="secondary" (click)="startTheElection()">
                     <mat-icon>start</mat-icon>Start Election
+                </button>
+                <button *ngIf="election.status=='In Progress'" mat-raised-button class="me-2" color="secondary" (click)="endTheElection()">
+                    <mat-icon>stop</mat-icon>End Election
                 </button>
             </div>
             <div class="d-flex flex-row justify-content-center pt-2">

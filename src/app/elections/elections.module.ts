@@ -7,17 +7,19 @@ import { ElectionsComponent } from './elections.component';
 import { ElectionCardComponent } from './election-card/election-card.component';
 import { NewElectionComponent } from './new-election/new-election.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HeaderComponent } from '../shared/header/header.component';
+import { VotingComponent } from './voting/voting.component';
 
 
 
 @NgModule({
-  declarations: [ElectionsComponent, ElectionCardComponent, NewElectionComponent],
+  declarations: [HeaderComponent, ElectionsComponent, ElectionCardComponent, NewElectionComponent, VotingComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     SharedModule,
     ElectionsRoutingModule
   ],
-  providers:[DatePipe]
+  providers: [DatePipe]
 })
 export class ElectionsModule { }
