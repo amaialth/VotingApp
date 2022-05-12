@@ -1,12 +1,13 @@
 <mat-card>
-    <mat-card-header class="d-flex align-items-center" matRipple [matRippleCentered]="centered">
+    <mat-card-header class="d-flex align-items-center" [ngClass]="{'not-started':election.status=='Not Started', 'in-progress':election.status=='In Progress'}"
+    matRipple [matRippleCentered]="centered">
         <mat-card-title class="d-flex flex-column">
             <span class="pb-2">{{election.electionName}}</span>
             <span>{{election.status}}</span>
         </mat-card-title>
     </mat-card-header>
     <mat-divider></mat-divider>
-    <mat-card-content>
+    <mat-card-content> 
         <div class="d-flex flex-fill flex-column p-2 bd-highlight">
             <div class="d-flex flex-row fs-5 justify-content-around pb-2 border-bottom">
                 <div>
@@ -33,7 +34,7 @@
                             {{vote.candidateName}}
                         </td>
                         <td *ngIf="election.status!='Completed'">
-                            <button mat-raised-button class="me-2" color="primary" [disabled]="isUserAlreadyVoted() || election.status!='Not Started'" (click)="openVotingModel(i)">
+                            <button mat-raised-button class="me-2" color="primary" [disabled]="isUserAlreadyVoted() || election.status=='Not Started'" (click)="openVotingModel(i)">
                                 <mat-icon>how_to_vote</mat-icon>
                             </button>
                         </td>
@@ -47,10 +48,10 @@
                 <button *ngIf="election.status=='Completed'" mat-raised-button class="me-2" color="secondary" (click)="openVotingModel(0)">
                     <mat-icon>how_to_vote</mat-icon>View Result
                 </button>
-                <button *ngIf="election.status=='Not Started'" mat-raised-button class="me-2" color="secondary" (click)="startTheElection()">
+                <button *ngIf="election.status=='Not Started' && isAdmin" mat-raised-button class="me-2" color="secondary" (click)="startTheElection()">
                     <mat-icon>start</mat-icon>Start Election
                 </button>
-                <button *ngIf="election.status=='In Progress'" mat-raised-button class="me-2" color="secondary" (click)="endTheElection()">
+                <button *ngIf="election.status=='In Progress' && isAdmin" mat-raised-button class="me-2" color="secondary" (click)="endTheElection()">
                     <mat-icon>stop</mat-icon>End Election
                 </button>
             </div>

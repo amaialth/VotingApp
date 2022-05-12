@@ -69,6 +69,7 @@ export class NewElectionComponent implements OnInit {
     this.electionService.create(this.election).then(() => {
       this.message = 'Created new election successfully!';
       this.saveLoading = false;
+      this.modelRef.close();
     }).
     catch(()=>{
       this.errMessage = 'Error in creating Election';

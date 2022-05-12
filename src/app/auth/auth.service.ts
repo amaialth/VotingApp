@@ -24,7 +24,7 @@ export class AuthService {
         if (result)
             this.router.navigate(['home']);
     }
-
+   
     async register(email: string, password: string) {
         var result = await this.fireAuth.createUserWithEmailAndPassword(email, password)
     }
@@ -45,11 +45,15 @@ export class AuthService {
     }
     get isAdmin(): boolean {
         const user = localStorage.getItem('user');
-        return user != null && JSON.parse(user)['email'] == 'anbu@gmail.com';
+        return user != null && JSON.parse(user)['email'] == 'admin@admin.com';
     }
     get loggedInUserName(): string {
         const user = localStorage.getItem('user');
         return user != null ? JSON.parse(user)['email']:'';
+    }
+    get loggedInUser(): any {
+        const user = localStorage.getItem('user');
+        return user;
     }
     async loginWithGoogle() {
         console.log(firebase);

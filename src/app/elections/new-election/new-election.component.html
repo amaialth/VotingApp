@@ -67,12 +67,12 @@
 
                             <div class="form-check form-check-inline"
                                 [ngClass]="isFieldInvalid('gender')?'is-invalid':''">
-                                <input class="form-check-input" type="radio" name="gender" id="male"
+                                <input class="form-check-input" type="radio" name="gender{{i}}" id="male"
                                     formControlName="gender" [(ngModel)]="candidate.gender" value="MALE">
                                 <label class="form-check-label" for="male">Male</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="gender" id="female"
+                                <input class="form-check-input" type="radio" name="gender{{i}}" id="female"
                                     formControlName="gender" [(ngModel)]="candidate.gender" value="FEMALE">
                                 <label class="form-check-label" for="female">Female</label>
                             </div>

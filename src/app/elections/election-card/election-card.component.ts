@@ -18,10 +18,13 @@ export class ElectionCardComponent implements OnInit {
   @Output('openCustomerModel') openCustomerModel:EventEmitter<any> = new EventEmitter<any>();
   @Output('startElection') startElection:EventEmitter<any> = new EventEmitter<any>();
   @Output('endElection') endElection:EventEmitter<any> = new EventEmitter<any>();
+  isAdmin:boolean = false;
   constructor(private ngbModalService:NgbModal,
     private datePipe: DatePipe,
     private authService: AuthService,
-    private electionService: ElectionService) { }
+    private electionService: ElectionService) { 
+      this.isAdmin = this.authService.isAdmin;
+    }
 
   ngOnInit(): void {
   }
@@ -36,7 +39,7 @@ export class ElectionCardComponent implements OnInit {
   }
   
   openVotingModel(i:number){
-    const modalRef = this.ngbModalService.open(VotingComponent, AppConstants.MODAL_OPTION_XL);
+    const modalRef = this.ngbModalService.open(VotingComponent, AppConstants.MODAL_OPTION_SM);
     modalRef.componentInstance.electionName =this.election.electionName;
     modalRef.componentInstance.message = 'You are going to vote '+ this.election.voting[i].candidateName;
     modalRef.result.then((result) => {

@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "voting-app-89e7a": {
+      "hosting": {
+        "voting-app": [
+          "voting-app-89e7a"
+        ]
+      }
+    }
+  }
+}

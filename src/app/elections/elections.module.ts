@@ -9,11 +9,13 @@ import { NewElectionComponent } from './new-election/new-election.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from '../shared/header/header.component';
 import { VotingComponent } from './voting/voting.component';
+import { AccountDetailsComponent } from '../shared/header/account-details/account-details.component';
+import { ViewResultComponent } from './view-result/view-result.component';
 
 
 
 @NgModule({
-  declarations: [HeaderComponent, ElectionsComponent, ElectionCardComponent, NewElectionComponent, VotingComponent],
+  declarations: [HeaderComponent, AccountDetailsComponent, ViewResultComponent, ElectionsComponent, ElectionCardComponent, NewElectionComponent, VotingComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
