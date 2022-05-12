@@ -63,16 +63,16 @@
                     </td>
                     <td>
                         <div class="form-group p-2 col-sm-12 col-lg-6 col-md-12">
-                            <label for="name" class="pb-2">Gender</label><br />
+                            <label for="gender" class="pb-2">Gender</label><br />
 
                             <div class="form-check form-check-inline"
                                 [ngClass]="isFieldInvalid('gender')?'is-invalid':''">
-                                <input class="form-check-input" type="radio" name="gender{{i}}" id="male"
+                                <input class="form-check-input" type="radio" id="male"
                                     formControlName="gender" [(ngModel)]="candidate.gender" value="MALE">
                                 <label class="form-check-label" for="male">Male</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="gender{{i}}" id="female"
+                                <input class="form-check-input" type="radio" id="female"
                                     formControlName="gender" [(ngModel)]="candidate.gender" value="FEMALE">
                                 <label class="form-check-label" for="female">Female</label>
                             </div>

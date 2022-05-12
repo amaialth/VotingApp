@@ -11,11 +11,12 @@ import { HeaderComponent } from '../shared/header/header.component';
 import { VotingComponent } from './voting/voting.component';
 import { AccountDetailsComponent } from '../shared/header/account-details/account-details.component';
 import { ViewResultComponent } from './view-result/view-result.component';
+import { FooterComponent } from '../shared/footer/footer.component';
 
 
 
 @NgModule({
-  declarations: [HeaderComponent, AccountDetailsComponent, ViewResultComponent, ElectionsComponent, ElectionCardComponent, NewElectionComponent, VotingComponent],
+  declarations: [HeaderComponent, FooterComponent, AccountDetailsComponent, ViewResultComponent, ElectionsComponent, ElectionCardComponent, NewElectionComponent, VotingComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

@@ -29,7 +29,8 @@ export class NewElectionComponent implements OnInit {
   }
   myFilter = (d: Date | null): boolean => {
     let today = new Date();
-    const day = (d || new Date()) >= today;
+    today.setDate(today.getDate() - 1);
+    const day = (d || new Date()) > today;
     // Prevent Saturday and Sunday from being selected.
     return day;
   };
@@ -65,7 +66,9 @@ export class NewElectionComponent implements OnInit {
   saveElection(): void {
     this.saveLoading = true;
     const candidates = this.election.candidates.map((obj)=> {return Object.assign({}, obj)});
+    const winner = Object.assign({}, this.election.winner);
     this.election.candidates = candidates;
+    this.election.winner = winner;
     this.electionService.create(this.election).then(() => {
       this.message = 'Created new election successfully!';
       this.saveLoading = false;

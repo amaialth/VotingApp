@@ -5,7 +5,6 @@ import { map } from 'rxjs';
 import { AppConstants } from '../app.constants';
 import { AuthService } from '../auth/auth.service';
 import { ElectionService } from '../services/election.service';
-import { Candidate } from '../shared/model/candidate.model';
 import { Election } from '../shared/model/election.model';
 import { Voting } from '../shared/model/voting.model';
 import { NewElectionComponent } from './new-election/new-election.component';
@@ -27,7 +26,6 @@ export class ElectionsComponent implements OnInit {
 
   ngOnInit(): void {
     this.retrieveElections();
-    console.log(this.authService.isAdmin)
   }
   openCreateModel() {
     const modelRef = this.ngbService.open(NewElectionComponent, AppConstants.MODAL_OPTION_XL);
@@ -74,6 +72,7 @@ export class ElectionsComponent implements OnInit {
             winner = vote;
           }
         }
+        election.winner = winner;
         console.log(winner);
       }
       election.status = 'Completed';
@@ -85,8 +84,10 @@ export class ElectionsComponent implements OnInit {
   updateElection(election: Election): void {
     const candidates = election.candidates.map((obj) => { return Object.assign({}, obj) });
     const voting = election.voting.map((obj) => { return Object.assign({}, obj) });
+    const winner =  Object.assign({}, election.winner);
     election.candidates = candidates;
     election.voting = voting;
+    election.winner = winner;
     let docId = '';
     if (election.id) {
       docId = election.id;

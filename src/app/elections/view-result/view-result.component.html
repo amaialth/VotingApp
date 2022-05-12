@@ -1,1 +1,28 @@
-<p>view-result works!</p>
+<div class="container-fluid p-4">
+    <mat-toolbar>
+        <mat-toolbar-row class="d-flex justify-content-between">
+            <span class="title">
+                Voting Relust for Election - {{election.electionName}}</span>
+
+            <div class="d-flex flex-row">
+
+                <button mat-raised-button color="warn" (click)="close()">
+                    <mat-icon>close</mat-icon>close
+                </button>
+
+            </div>
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <div *ngIf="message!=''" class="h1 alert alert-success">{{message}}</div>
+    <div *ngIf="election.voted!=null" class="f-4">Total Votes Polled : {{election.voted.length}}</div>
+    <div *ngFor="let vote of election.voted; let i=index">
+        <span>{{(i+1) +'.'+vote}}</span>
+    </div>
+
+    <div class="d-flex justify-content-between">
+        <button mat-raised-button color="warn" (click)="close()">
+            <mat-icon>close</mat-icon>Close
+        </button>
+        
+    </div>
+</div>

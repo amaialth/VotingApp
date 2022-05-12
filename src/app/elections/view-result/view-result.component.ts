@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Election } from 'src/app/shared/model/election.model';
 
 @Component({
   selector: 'app-view-result',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./view-result.component.scss']
 })
 export class ViewResultComponent implements OnInit {
-
+  election: Election = new Election;
+  message:string='';
   constructor() { }
 
   ngOnInit(): void {
   }
-
+  close(){
+    
+  }
 }

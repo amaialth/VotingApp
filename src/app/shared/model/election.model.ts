@@ -11,6 +11,7 @@ export class Election {
     voting: Voting[];
     status:string;
     voted: string[];
+    winner: Voting;
     constructor(
         electionName?: string,
         createdDate?: Date,
@@ -18,7 +19,8 @@ export class Election {
         candidates?: Candidate[],
         voting?: Voting[],
         status?:string,
-        voted?: string[]){
+        voted?: string[],
+        winner?: Voting){
         this.electionName = electionName?electionName:'';
         this.createdDate = createdDate?createdDate:new Date();
         this.electionDate = electionDate? electionDate:new Date();
@@ -26,6 +28,7 @@ export class Election {
         this.voting = voting? voting:[];
         this.status = status? status:'Not Started';
         this.voted = voted?voted:[];
+        this.winner = winner?winner:new Voting;
 
     }
 }

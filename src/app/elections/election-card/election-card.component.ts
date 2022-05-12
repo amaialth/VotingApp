@@ -5,6 +5,7 @@ import { AppConstants } from 'src/app/app.constants';
 import { AuthService } from 'src/app/auth/auth.service';
 import { ElectionService } from 'src/app/services/election.service';
 import { Election } from 'src/app/shared/model/election.model';
+import { ViewResultComponent } from '../view-result/view-result.component';
 import { VotingComponent } from '../voting/voting.component';
 
 @Component({
@@ -37,7 +38,15 @@ export class ElectionCardComponent implements OnInit {
       }
     }); */
   }
-  
+  openVotingResult(){
+    const modalRef = this.ngbModalService.open(ViewResultComponent, AppConstants.MODAL_OPTION_XL);
+    modalRef.componentInstance.election =this.election;
+    modalRef.componentInstance.message = 'Winner '+this.election.winner.candidateName;
+    modalRef.result.then((result) => {
+      if ( result === 'success' ) {
+      }
+    })
+  }
   openVotingModel(i:number){
     const modalRef = this.ngbModalService.open(VotingComponent, AppConstants.MODAL_OPTION_SM);
     modalRef.componentInstance.electionName =this.election.electionName;
